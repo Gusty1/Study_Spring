@@ -16,20 +16,5 @@
         <maven.compiler.target>19</maven.compiler.target>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
     </properties>
-    <dependencies>
-        <!--spring context依賴-->
-        <!--當你引入Spring Context依賴之後，表示將Spring的基礎依賴引入了-->
-        <dependency>
-            <groupId>org.springframework</groupId>
-            <artifactId>spring-context</artifactId>
-            <version>6.0.8</version>
-        </dependency>
 
-        <!--junit5測試-->
-        <dependency>
-            <groupId>org.junit.jupiter</groupId>
-            <artifactId>junit-jupiter-api</artifactId>
-            <version>5.9.2</version>
-        </dependency>
-    </dependencies>
 </project>

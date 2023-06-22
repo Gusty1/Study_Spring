@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<configuration>
+    <loggers>
+        <!--
+        level指定日誌級別，從低到高的優先級：
+        TRACE < DEBUG < INFO < WARN < ERROR < FATAL
+        trace ：追踪，是最低的日誌級別，相當於追踪程序的執行
+        debug ：調試，一般在開發中，都將其設置為最低的日誌級別
+        info ：信息，輸出重要的信息，使用較多
+        warn ：警告，輸出警告的信息
+        error ：錯誤，輸出錯誤信息
+        fatal ：嚴重錯誤
+        -->
+        <root level="DEBUG">
+            <appender-ref ref="spring6log"/>
+            <appender-ref ref="RollingFile"/>
+            <appender-ref ref="log"/>
+        </root>
+    </loggers>
+
+    <appenders>
+        <!--輸出日誌信息到控制台-->
+        <console name="spring6log" target="SYSTEM_OUT">
+            <!--控制日誌輸出的格式-->
+            <PatternLayout pattern="%d{yyyy-MM-dd HH:mm:ss SSS} [%t] %-3level %logger{1024} - %msg%n"/>
+        </console>
+
+        <!--文件會打印出所有信息，這個log每次運行程序會自動清空，由append屬性決定，適合臨時測試用-->
+        <File name="log" fileName="d:/spring6_log/test.log" append="false">
+            <PatternLayout pattern="%d{HH:mm:ss.SSS} %-5level %class{36} %L %M - %msg%xEx%n"/>
+        </File>
+
+        <!--這個會打印出所有的信息， 每次大小超過size ，則這size大小的日誌會自動存入按年份-月份建立的文件夾下面並進行壓縮， 作為存檔-->
+        <RollingFile name="RollingFile" fileName="d:/spring6_log/app.log"
+                     filePattern="log/$${date:yyyy-MM}/app-%d{MM-dd-yyyy}-%i.log.gz">
+            <PatternLayout pattern="%d{yyyy-MM-dd 'at' HH:mm:ss z} %-5level %class{36} %L %M - %msg%xEx%n"/>
+            <SizeBasedTriggeringPolicy size="50MB"/>
+            <!-- DefaultRolloverStrategy屬性如不設置，則默認為最多同一文件夾下7個文件，這裡設置了20 -->
+            <DefaultRolloverStrategy max="20"/>
+        </RollingFile>
+    </appenders>
+</configuration>

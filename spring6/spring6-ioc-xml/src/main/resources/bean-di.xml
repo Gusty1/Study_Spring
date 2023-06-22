@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd">
+
+    <!--1. set方法注入-->
+    <bean id="book" class="com.gusty.spring6.iocxml.di.Book">
+        <property name="bname" value="前端開發"></property>
+        <property name="author" value="Gusty"></property>
+        <!--若值為null需要用null的特殊標籤-->
+<!--        <property name="others" >-->
+<!--            <null/>-->
+<!--        </property>-->
+        <!--若值包含某些特殊符號需要用xml的轉譯編碼 下面範例是<>-->
+<!--        <property name="others" value="&lt;&gt;"></property>-->
+        <!--若值包含某些特殊符號可以用<![CDATA[你的值]]> 下面範例是a < b-->
+<!--        <property name="others">-->
+<!--            <value><![CDATA[a < b]]></value>-->
+<!--        </property>-->
+    </bean>
+
+    <!--2. 構造器注入-->
+    <bean id="bookCon" class="com.gusty.spring6.iocxml.di.Book">
+        <constructor-arg name="bname" value="java開發"></constructor-arg>
+        <constructor-arg name="author" value="Gusty"></constructor-arg>
+    </bean>
+</beans>

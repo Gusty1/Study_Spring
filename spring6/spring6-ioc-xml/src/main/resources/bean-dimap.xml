@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd">
+
+    <!--
+        1.創建2個對象
+        2.注入普通類型屬性
+        3.在學生bean注入map集合類型屬性
+    -->
+    <bean id="teacher1" class="com.gusty.spring6.iocxml.dimap.Teacher">
+        <property name="teacherId" value="100"></property>
+        <property name="teacherName" value="Faker"></property>
+    </bean>
+    <bean id="teacher2" class="com.gusty.spring6.iocxml.dimap.Teacher">
+        <property name="teacherId" value="200"></property>
+        <property name="teacherName" value="Knight"></property>
+    </bean>
+
+
+    <bean id="student" class="com.gusty.spring6.iocxml.dimap.Student">
+        <property name="sid" value="1"></property>
+        <property name="sname" value="小明"></property>
+        <property name="teacherMap">
+            <map>
+                <entry>
+                    <key>
+                        <value>10010</value>
+                    </key>
+                    <ref bean="teacher1"></ref>
+                </entry>
+                <entry>
+                    <key>
+                        <value>10086</value>
+                    </key>
+                    <ref bean="teacher2"></ref>
+                </entry>
+            </map>
+        </property>
+    </bean>
+</beans>

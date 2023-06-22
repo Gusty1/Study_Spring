@@ -1,0 +1,64 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xmlns:util="http://www.springframework.org/schema/util"
+       xmlns:p="http://www.springframework.org/schema/p"
+       xsi:schemaLocation="
+       http://www.springframework.org/schema/util
+       http://www.springframework.org/schema/util/spring-util.xsd
+       http://www.springframework.org/schema/beans
+       http://www.springframework.org/schema/beans/spring-beans.xsd">
+
+    <!--p命名空間注入-->
+    <bean id="studentp" class="com.gusty.spring6.iocxml.dimap.Student"
+    p:sid="55" p:sname="小李" p:lessonList-ref="lessonList" p:teacherMap-ref="teacherMap">
+    </bean>
+    <!--
+        1.創建3個對象
+        2.注入普通類型屬性
+        3.使用util:類型 定義
+        4.在學生bean引入util:類型定義bean，完成list、map類屬性注入
+    -->
+
+    <bean id="lesson1" class="com.gusty.spring6.iocxml.dimap.Lesson">
+        <property name="lessonName" value="java開發"></property>
+    </bean>
+    <bean id="lesson2" class="com.gusty.spring6.iocxml.dimap.Lesson">
+        <property name="lessonName" value="前端開發"></property>
+    </bean>
+
+    <bean id="teacher1" class="com.gusty.spring6.iocxml.dimap.Teacher">
+        <property name="teacherId" value="100"></property>
+        <property name="teacherName" value="Faker"></property>
+    </bean>
+    <bean id="teacher2" class="com.gusty.spring6.iocxml.dimap.Teacher">
+        <property name="teacherId" value="200"></property>
+        <property name="teacherName" value="Ruler"></property>
+    </bean>
+
+    <bean id="student" class="com.gusty.spring6.iocxml.dimap.Student">
+        <property name="sname" value="小明"></property>
+        <property name="sid" value="25"></property>
+        <property name="lessonList" ref="lessonList"></property>
+        <property name="teacherMap" ref="teacherMap"></property>
+    </bean>
+
+    <util:list id="lessonList">
+        <ref bean="lesson1"></ref>
+        <ref bean="lesson2"></ref>
+    </util:list>
+    <util:map id="teacherMap">
+        <entry>
+            <key>
+                <value>10010</value>
+            </key>
+            <ref bean="teacher1"></ref>
+        </entry>
+        <entry>
+            <key>
+                <value>10086</value>
+            </key>
+            <ref bean="teacher2"></ref>
+        </entry>
+    </util:map>
+</beans>

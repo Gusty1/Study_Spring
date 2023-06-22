@@ -1,0 +1,9 @@
+package com.gusty.spring6.iocxml.auto.dao;
+
+public class UserDaoImpl implements UserDao{
+
+    @Override
+    public void addUserDao() {
+        System.out.println("userDao方法執行了...");
+    }
+}
